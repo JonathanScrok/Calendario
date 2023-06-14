@@ -1,3 +1,4 @@
+using CalendarioAPP.Models.Mongo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -24,6 +25,18 @@ namespace CalendarioAPP
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddMvc();
+            EventoDbContext.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+            EventoDbContext.DatabaseName = Configuration.GetSection("MongoConnection:DatabaseEventos").Value;
+            EventoDbContext.IsSSL = Convert.ToBoolean(this.Configuration.GetSection("MongoConnection:IsSSL").Value);
+
+            LoginMongoDbContext.ConnectionString = Configuration.GetSection("MongoConnection:ConnectionString").Value;
+            LoginMongoDbContext.DatabaseName = Configuration.GetSection("MongoConnection:DatabaseUsers").Value;
+            LoginMongoDbContext.IsSSL = Convert.ToBoolean(this.Configuration.GetSection("MongoConnection:IsSSL").Value);
+            //services.AddScoped<IEncodeSenhaService, EncodeSenhaService>();
+            services.AddSession();
+            //services.AddDbContext<DatabaseContext>(x => x.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddMvc(option => option.EnableEndpointRouting = false);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
