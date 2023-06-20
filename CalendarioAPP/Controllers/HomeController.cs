@@ -20,29 +20,54 @@ namespace NossoCalendario.Controllers
         {
             _logger = logger;
         }
+        // TIPOS DE LOG:
+        //_logger.LogInformation($"Testando o NLog em {DateTime.UtcNow}");
+        //_logger.LogWarning("NLog - Alerta");
+        //_logger.Log(LogLevel.Error, ex, ex.Message);
 
         public IActionResult Index()
         {
+            _logger.LogInformation(" Parte 1 - Abrindo a tela inicial ");
+
             return View();
         }
 
         [HttpGet]
         public JsonResult ListarEventosJson()
         {
-            EventoDbContext dbContext = new EventoDbContext();
-            List<Evento> listaEventos = dbContext.Eventos.FindSync(m => true).ToList();
-
-            foreach (var evento in listaEventos)
+            _logger.LogInformation(" Parte 2 - Chamou o ListarEventosJson ");
+            try
             {
-                if (!string.IsNullOrEmpty(evento.Horario))
+                EventoDbContext dbContext = new EventoDbContext();
+                List<Evento> listaEventos = dbContext.Eventos.FindSync(m => true).ToList();
+
+                if (listaEventos.Count > 0)
+                    _logger.LogInformation($" Parte 3 - Carregou eventos! Eventos: {listaEventos.Count}");
+                else
+                    _logger.LogWarning($"NÃO CARREGOU EVENTOS! Eventos: {listaEventos.Count}");
+
+                foreach (var evento in listaEventos)
                 {
-                    evento.Titulo = evento.Horario + " - " + evento.Titulo;
+                    if (!string.IsNullOrEmpty(evento.Horario))
+                    {
+                        evento.Titulo = evento.Horario + " - " + evento.Titulo;
+                    }
                 }
+
+                string json = JsonConvert.SerializeObject(listaEventos);
+
+                _logger.LogInformation(" Parte 4 - ListarEventosJson realizado com sucesso! ");
+
+                return new JsonResult(listaEventos);
             }
-
-            string json = JsonConvert.SerializeObject(listaEventos);
-
-            return new JsonResult(listaEventos);
+            catch (Exception ex)
+            {
+                _logger.LogWarning("ERRO AO CARREGAR OS EVENTOS!!");
+                _logger.Log(LogLevel.Error, ex, ex.Message);
+                List<Evento> listaEventosVazia = new List<Evento>();
+                return new JsonResult(listaEventosVazia);
+            }
+            
         }
 
         [HttpPost]

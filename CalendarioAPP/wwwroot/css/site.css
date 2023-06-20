@@ -54,8 +54,8 @@ button.accept-policy {
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
-    background-image: url(/img/wallpaper.jpg);
-    background-repeat: repeat;
+    /*background-image: url(/img/wallpaper.jpg);
+    background-repeat: repeat;*/
     /*    position: relative;
     min-height: 100%;*/
 }
@@ -63,8 +63,8 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-image: url(/img/wallpaper.jpg);
-    background-repeat: repeat;
+    /*background-image: url(/img/wallpaper.jpg);
+    background-repeat: repeat;*/
     /*background-repeat: no-repeat;
       background-size: cover;*/
 }
