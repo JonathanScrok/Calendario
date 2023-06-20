@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CalendarioAPP.Models.Mongo
+namespace NossoCalendario.Models.Mongo
 {
     public class LoginMongoDbContext
     {

@@ -1,5 +1,5 @@
-﻿using CalendarioAPP.Models;
-using CalendarioAPP.Models.Mongo;
+﻿using NossoCalendario.Models;
+using NossoCalendario.Models.Mongo;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -10,7 +10,7 @@ using MongoDB.Driver;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 
-namespace CalendarioAPP.Controllers
+namespace NossoCalendario.Controllers
 {
     public class HomeController : Controller
     {

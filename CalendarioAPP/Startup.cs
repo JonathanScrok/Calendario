@@ -1,4 +1,4 @@
-using CalendarioAPP.Models.Mongo;
+using NossoCalendario.Models.Mongo;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CalendarioAPP
+namespace NossoCalendario
 {
     public class Startup
     {

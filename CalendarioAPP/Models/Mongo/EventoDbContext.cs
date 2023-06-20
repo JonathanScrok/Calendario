@@ -1,7 +1,7 @@
 ﻿using MongoDB.Driver;
 using System;
 
-namespace CalendarioAPP.Models.Mongo
+namespace NossoCalendario.Models.Mongo
 {
     public class EventoDbContext
     {

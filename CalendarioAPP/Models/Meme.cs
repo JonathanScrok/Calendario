@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace CalendarioAPP.Models
+namespace NossoCalendario.Models
 {
     public class Meme
     {
