@@ -97,8 +97,11 @@ namespace NossoCalendario.Controllers
                     {
                         Hora = Regex.Replace(detalheHorario[0], "[^0-9]", "");
 
-                        if (Convert.ToInt32(Hora) > 23)
-                            Hora = "23";
+                        if (!string.IsNullOrEmpty(Hora))
+                        {
+                            if (Convert.ToInt32(Hora) > 23)
+                                Hora = "23";
+                        }
                     }
                 }
 
